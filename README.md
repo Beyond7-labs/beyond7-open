@@ -1,4 +1,4 @@
-# Beyond7 Labs: Plugins für Claude Code
+# Beyond7 Open: Plugins für Claude Code
 
 Werkzeuge für Arbeitsordner, in denen Claude Code mitarbeitet: Projekte, Kundenordner, Notizen, kein Software-Code nötig.
 
@@ -7,15 +7,15 @@ Werkzeuge für Arbeitsordner, in denen Claude Code mitarbeitet: Projekte, Kunden
 In Claude Code:
 
 ```
-/plugin marketplace add Beyond7-labs/marketplace
-/plugin install drift-check@beyond7-labs
+/plugin marketplace add Beyond7-labs/beyond7-open
+/plugin install drift-check@beyond7-open
 ```
 
 Oder im Terminal:
 
 ```bash
-claude plugin marketplace add Beyond7-labs/marketplace
-claude plugin install drift-check@beyond7-labs
+claude plugin marketplace add Beyond7-labs/beyond7-open
+claude plugin install drift-check@beyond7-open
 ```
 
 ## Plugins

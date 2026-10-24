@@ -1,6 +1,6 @@
 {
-  "name": "beyond7-labs",
-  "description": "Plugins aus den Beyond7 Labs: Werkzeuge für Arbeitsordner, in denen Claude Code mitarbeitet",
+  "name": "beyond7-open",
+  "description": "Beyond7 Open: frei nutzbare Werkzeuge für Arbeitsordner, in denen Claude Code mitarbeitet",
   "owner": {
     "name": "Beyond7",
     "email": "hendrik@beyond7.ai"
