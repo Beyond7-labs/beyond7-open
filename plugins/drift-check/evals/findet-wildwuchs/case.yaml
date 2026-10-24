@@ -1,0 +1,23 @@
+schema_version: "1.1"
+name: findet-wildwuchs
+description: Jeder absichtlich eingebaute Fund steht im Report.
+tags: [kern]
+execution:
+  prompt: "Ist mein Arbeitsordner hier noch in Ordnung? Schau bitte mal drüber."
+  max_turns: 25
+  timeout_seconds: 400
+  allowed_tools: [Read, Glob, Grep, Skill, Bash, Write]
+context:
+  scaffold_script: scaffold.sh
+graders:
+  - name: skill-fired
+    type: tool_used
+    tool: Skill
+    input_match: '"skill"\s*:\s*"(?:[\w-]+:)?check"'
+  - name: report-angelegt
+    type: file_exists
+    path: "ordnungs-check-*.md"
+  - name: alle-funde-im-report
+    type: tool_used
+    tool: Write
+    input_match: 'ordnungs-check-[0-9-]+\.md(?=[\s\S]*ideen\.md)(?=[\s\S]*notes\.md)(?=[\s\S]*MIGRATION_LOG\.md)(?=[\s\S]*angebot Kopie\.md)(?=[\s\S]*preise\.md)(?=[\s\S]*kunden/delta/README\.md)(?=[\s\S]*__MACOSX)(?=[\s\S]*\.playwright-mcp)(?=[\s\S]*kunden/acme/)'

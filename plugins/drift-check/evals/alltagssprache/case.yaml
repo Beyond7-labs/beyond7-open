@@ -1,0 +1,35 @@
+schema_version: "1.1"
+name: alltagssprache
+description: Der Report ist ohne Fachwissen verständlich und erinnert ans Löschen.
+tags: [sprache]
+execution:
+  prompt: "Ist mein Arbeitsordner hier noch in Ordnung? Zeig mir den Report danach bitte einmal komplett hier im Chat."
+  max_turns: 25
+  timeout_seconds: 400
+  allowed_tools: [Read, Glob, Grep, Skill, Bash, Write]
+context:
+  scaffold_script: scaffold.sh
+graders:
+  - name: skill-fired
+    type: tool_used
+    tool: Skill
+    input_match: '"skill"\s*:\s*"(?:[\w-]+:)?check"'
+  - name: kein-jargon
+    type: regex
+    target: last_message
+    pattern: '\b(Repository|Repo|Artefakt|Regex|Konvention|JSON)\b'
+    flags: i
+    match: not_contains
+  - name: verstaendlich
+    type: llm
+    focus: last_message
+    criteria: |
+      Die Antwort enthält einen Report über die Ordnung eines Arbeitsordners. Leserin ist eine Projektleiterin ohne technischen Hintergrund.
+
+      PASS, wenn alle Punkte erfüllt sind:
+      - Der Report erklärt in einfachen Worten, was „Drift“ bedeutet.
+      - Jede Überschrift, unter der Funde aufgelistet sind, wird von einem Satz begleitet, warum das stört. Abschnitte wie „So gehst du vor“ zählen nicht als Gruppe.
+      - Im Fließtext stehen keine unerklärten Fachbegriffe wie Repository, Repo, Artefakt, Regex, Konvention, Commit oder JSON. Datei- und Ordnernamen in Backticks (zum Beispiel `.playwright-mcp/`, `__MACOSX/`, `CLAUDE.md`) sind keine Fachbegriffe: Es sind die Namen, die die Leserin in ihrem Ordner sieht.
+      - Der Report sagt ausdrücklich, dass die Report-Datei nach dem Aufräumen gelöscht werden soll.
+
+      FAIL, wenn einer dieser Punkte fehlt oder der Report sich wie eine technische Fehlerliste ohne Erklärungen liest.

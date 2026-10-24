@@ -1,0 +1,20 @@
+schema_version: "1.1"
+name: gewohnheit-ohne-regel
+description: Eine gelebte, aber nirgends aufgeschriebene Gewohnheit wird als Frage zur Regel vorgeschlagen.
+tags: [kern]
+execution:
+  prompt: "Ist mein Arbeitsordner hier noch in Ordnung? Schau bitte mal drüber."
+  max_turns: 25
+  timeout_seconds: 400
+  allowed_tools: [Read, Glob, Grep, Skill, Bash, Write]
+context:
+  scaffold_script: scaffold.sh
+graders:
+  - name: skill-fired
+    type: tool_used
+    tool: Skill
+    input_match: '"skill"\s*:\s*"(?:[\w-]+:)?check"'
+  - name: vorschlag-ausgang
+    type: tool_used
+    tool: Write
+    input_match: 'ordnungs-check-[0-9-]+\.md[\s\S]*ausgang[\s\S]*CLAUDE\.md'

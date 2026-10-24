@@ -1,0 +1,11 @@
+{
+  "name": "drift-check",
+  "displayName": "Ordnungs-Check (Drift)",
+  "version": "0.1.0",
+  "description": "Zeigt in Alltagssprache, wo dein Arbeitsordner seine Ordnung verliert, und schreibt einen Report zum Abarbeiten.",
+  "author": { "name": "Hendrik Hemken", "email": "hendrik@beyond7.ai", "url": "https://beyond7.ai" },
+  "homepage": "https://github.com/Beyond7-labs/marketplace",
+  "repository": "https://github.com/Beyond7-labs/marketplace",
+  "license": "MIT",
+  "keywords": ["ordnung", "drift", "aufräumen", "arbeitsordner", "claude-md"]
+}

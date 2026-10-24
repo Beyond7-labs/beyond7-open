@@ -1,0 +1,15 @@
+{
+  "name": "beyond7-labs",
+  "description": "Plugins aus den Beyond7 Labs: Werkzeuge für Arbeitsordner, in denen Claude Code mitarbeitet",
+  "owner": {
+    "name": "Beyond7",
+    "email": "hendrik@beyond7.ai"
+  },
+  "plugins": [
+    {
+      "name": "drift-check",
+      "source": "./plugins/drift-check",
+      "description": "Ordnungs-Check (Drift): zeigt in Alltagssprache, wo dein Arbeitsordner seine Ordnung verliert"
+    }
+  ]
+}
